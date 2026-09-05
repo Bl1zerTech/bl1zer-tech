@@ -13,9 +13,12 @@
         }
 
         body {
-            background: #121212 url('FONupdate.jpg') no-repeat center center fixed;
+            background-color: #121212;
+            background-image: url('./FONupdate.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
             background-size: cover;
-            image-rendering: -webkit-optimize-contrast;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -218,25 +221,10 @@
             height: 26px;
         }
 
-        /* Стилі кнопок соцмереж */
-        .social-btn.tg {
-            background-color: #000000;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-        }
-
-        .social-btn.tt {
-            background-color: #ffffff;
-            border: 2px solid #000000;
-            color: #000000;
-        }
-
-        .social-btn.ig {
-            background-color: #000000;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-        }
-
+        /* Чорні кнопки з білою рамкою та білими іконками */
+        .social-btn.tg,
+        .social-btn.tt,
+        .social-btn.ig,
         .social-btn.yt {
             background-color: #000000;
             border: 2px solid #ffffff;
