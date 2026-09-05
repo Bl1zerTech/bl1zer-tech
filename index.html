@@ -58,7 +58,7 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
-        /* Сині кнопки-блочки */
+        /* Сині блоки */
         .accordion {
             width: 100%;
             background-color: #0d419d;
@@ -141,8 +141,9 @@
         .device-item {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 12px;
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             text-decoration: none;
             color: #fff;
@@ -152,8 +153,10 @@
             border-bottom: none;
         }
 
-        .device-item.clickable:hover {
-            opacity: 0.8;
+        .device-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .device-img {
@@ -166,6 +169,18 @@
             font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
+        }
+
+        /* Стрілочка вправо для клікабельних девайсів */
+        .arrow-right {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+            transition: transform 0.2s;
+        }
+
+        .device-item.clickable:hover .arrow-right {
+            transform: translateX(4px);
         }
 
         /* Нижній ряд соцмереж */
@@ -199,6 +214,7 @@
             height: 28px;
         }
 
+        /* Усі соцмережі в чорно-білому стилі */
         .social-btn.tg { background-color: #000000; border: 2px solid #ffffff; }
         .social-btn.tg svg { fill: #ffffff; }
 
@@ -208,7 +224,8 @@
         .social-btn.ig { background-color: #000000; border: 2px solid #ffffff; }
         .social-btn.ig svg { fill: #ffffff; }
 
-        .social-btn.yt { background-color: #e60000; border: 2px solid #ffffff; }
+        /* Чорно-білий YouTube */
+        .social-btn.yt { background-color: #000000; border: 2px solid #ffffff; }
         .social-btn.yt svg { fill: #ffffff; }
 
     </style>
@@ -227,21 +244,30 @@
             <div class="content">
                 <div class="device-list">
                     <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="device-item clickable">
-                        <img src="клава епомейкур.png" class="device-img" alt="EPOMAKER GALAXY 70">
-                        <span class="device-name">EPOMAKER GALAXY 70</span>
+                        <div class="device-left">
+                            <img src="клава епомейкур.png" class="device-img" alt="EPOMAKER GALAXY 70">
+                            <span class="device-name">EPOMAKER GALAXY 70</span>
+                        </div>
+                        <span class="arrow-right">→</span>
                     </a>
                     
                     <div class="device-item">
-                        <img src="клава hator.jpg" class="device-img" alt="HATOR ROCKFALL 2">
-                        <span class="device-name">HATOR ROCKFALL 2</span>
+                        <div class="device-left">
+                            <img src="клава hator.jpg" class="device-img" alt="HATOR ROCKFALL 2">
+                            <span class="device-name">HATOR ROCKFALL 2</span>
+                        </div>
                     </div>
                     <div class="device-item">
-                        <img src="мишка.png" class="device-img" alt="HATOR QUASAR 2 PRO">
-                        <span class="device-name">HATOR QUASAR 2 PRO</span>
+                        <div class="device-left">
+                            <img src="мишка.png" class="device-img" alt="HATOR QUASAR 2 PRO">
+                            <span class="device-name">HATOR QUASAR 2 PRO</span>
+                        </div>
                     </div>
                     <div class="device-item">
-                        <img src="мікро.png" class="device-img" alt="FIFINE A6V">
-                        <span class="device-name">FIFINE A6V</span>
+                        <div class="device-left">
+                            <img src="мікро.png" class="device-img" alt="FIFINE A6V">
+                            <span class="device-name">FIFINE A6V</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,15 +298,4 @@
             </a>
 
             <a href="https://www.instagram.com/bl1zer.tech/" target="_blank" class="social-btn ig" title="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-
-            <a href="https://www.youtube.com/@Bl1zerTech" target="_blank" class="social-btn yt" title="YouTube">
-                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-        </div>
-
-    </div>
-
-</body>
-</html>
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.94
