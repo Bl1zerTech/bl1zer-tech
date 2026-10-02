@@ -13,12 +13,14 @@
         }
 
         body {
-            background-color: #121212;
+            background-color: #000000;
             background-image: url('FONupdate.jpg?v=3');
             background-repeat: no-repeat;
             background-position: center center;
             background-attachment: fixed;
             background-size: cover;
+            /* Затемнення фону для монохрому */
+            background-blend-mode: overlay;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -49,26 +51,38 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 20px rgba(255,255,255,0.15);
             margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.03);
         }
 
         .username {
             font-size: 1.3rem;
             font-weight: 900;
-            color: #ff3366;
+            color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         }
 
-        /* Сині блоки */
+        /* Чорно-білі блоки (Акордеони) */
         .accordion {
             width: 100%;
-            background-color: #0d419d;
+            background-color: #111111;
+            border: 1px solid #333333;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: border-color 0.2s ease;
+        }
+
+        .accordion:hover {
+            border-color: #555555;
         }
 
         summary {
@@ -82,6 +96,7 @@
             justify-content: space-between;
             align-items: center;
             color: #ffffff;
+            letter-spacing: 0.5px;
         }
 
         summary::-webkit-details-marker {
@@ -92,7 +107,7 @@
             content: '∨';
             font-size: 1.1rem;
             font-weight: bold;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
         }
 
         details[open] summary::after {
@@ -101,8 +116,8 @@
 
         .content {
             padding: 12px 16px 16px 16px;
-            background-color: #0a337e;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #080808;
+            border-top: 1px solid #222222;
         }
 
         /* ПК Блок */
@@ -117,6 +132,7 @@
             height: auto;
             border-radius: 6px;
             object-fit: contain;
+            filter: grayscale(100%);
         }
 
         .pc-specs {
@@ -127,10 +143,11 @@
 
         .spec-row {
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
+            color: #dddddd;
         }
 
         .spec-row:last-child {
@@ -148,10 +165,16 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             text-decoration: none;
             color: #fff;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .device-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         .device-item:last-child {
@@ -169,28 +192,31 @@
             height: 45px;
             object-fit: contain;
             border-radius: 4px;
+            filter: grayscale(20%);
         }
 
         .device-name {
             font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
+            color: #ffffff;
         }
 
         /* Стрілочка вправо */
         .arrow-right {
             font-size: 1.1rem;
             font-weight: bold;
-            color: #ffffff;
-            transition: transform 0.2s ease;
+            color: #888888;
+            transition: transform 0.2s ease, color 0.2s ease;
             user-select: none;
         }
 
         .device-item.clickable:hover .arrow-right {
             transform: translateX(5px);
+            color: #ffffff;
         }
 
-        /* Соціальні мережі */
+        /* Соціальні мережі (Чорно-білі) */
         .socials {
             display: flex;
             gap: 12px;
@@ -207,27 +233,24 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            transition: transform 0.2s;
+            background-color: #000000;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.25s ease;
             flex-shrink: 0;
         }
 
         .social-btn:hover {
-            transform: scale(1.08);
+            background-color: #ffffff;
+            color: #000000;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
         }
 
         .social-btn svg {
             width: 26px;
             height: 26px;
-        }
-
-        .social-btn.tg,
-        .social-btn.tt,
-        .social-btn.ig,
-        .social-btn.yt {
-            background-color: #000000;
-            border: 2px solid #ffffff;
-            color: #ffffff;
         }
 
     </style>
