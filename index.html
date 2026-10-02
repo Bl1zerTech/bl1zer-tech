@@ -13,7 +13,7 @@
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=5');
+            background-image: url('FONupdate.jpg?v=6');
             background-repeat: no-repeat;
             background-position: center center;
             background-attachment: fixed;
@@ -35,7 +35,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Анімація плавного розкриття акордеона */
         @keyframes expandAccordion {
             from {
                 opacity: 0;
@@ -91,12 +90,12 @@
 
             .accordion {
                 width: 100%;
-                background-color: rgba(12, 12, 12, 0.85);
-                backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
+                background-color: rgba(18, 18, 18, 0.75);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.25);
                 border-radius: 16px;
                 overflow: hidden;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             }
 
             summary {
@@ -128,15 +127,14 @@
                 transform: rotate(180deg);
             }
 
-            /* Застосування анімації при відкритті */
             details[open] .content {
                 animation: expandAccordion 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
 
             .content {
                 padding: 12px 16px 16px 16px;
-                background-color: rgba(0, 0, 0, 0.9);
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                background-color: rgba(10, 10, 10, 0.85);
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
                 overflow: hidden;
             }
 
@@ -235,11 +233,19 @@
                 align-items: center;
                 justify-content: center;
                 text-decoration: none;
-                background-color: rgba(0, 0, 0, 0.8);
+                background-color: rgba(18, 18, 18, 0.75);
+                backdrop-filter: blur(8px);
                 border: 2px solid #ffffff;
                 color: #ffffff;
                 box-shadow: 0 4px 15px rgba(0,0,0,0.5);
                 flex-shrink: 0;
+                transition: transform 0.2s ease, background-color 0.2s ease;
+            }
+
+            .social-btn:hover {
+                background-color: #ffffff;
+                color: #000000;
+                transform: scale(1.1);
             }
 
             .social-btn svg {
@@ -257,13 +263,13 @@
                 display: flex;
                 width: 100%;
                 max-width: 980px;
-                background-color: rgba(8, 8, 8, 0.85);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
+                background-color: rgba(15, 15, 15, 0.75);
+                backdrop-filter: blur(14px);
+                border: 1px solid rgba(255, 255, 255, 0.25);
                 border-radius: 24px;
                 padding: 45px;
                 gap: 50px;
-                box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+                box-shadow: 0 15px 50px rgba(0,0,0,0.6);
                 align-items: center;
                 animation: fadeIn 0.4s ease-in-out;
             }
@@ -273,7 +279,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                border-right: 1px solid rgba(255, 255, 255, 0.15);
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
                 padding-right: 45px;
                 text-align: center;
             }
@@ -318,7 +324,7 @@
                 align-items: center;
                 justify-content: center;
                 text-decoration: none;
-                background-color: rgba(0, 0, 0, 0.8);
+                background-color: rgba(18, 18, 18, 0.8);
                 border: 2px solid #ffffff;
                 color: #ffffff;
                 transition: all 0.25s ease;
@@ -346,16 +352,16 @@
 
             .desk-accordion {
                 width: 100%;
-                background-color: rgba(15, 15, 15, 0.9);
-                border: 1px solid rgba(255, 255, 255, 0.2);
+                background-color: rgba(20, 20, 20, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.25);
                 border-radius: 16px;
                 overflow: hidden;
                 transition: border-color 0.3s ease;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             }
 
             .desk-accordion:hover {
-                border-color: rgba(255, 255, 255, 0.5);
+                border-color: rgba(255, 255, 255, 0.6);
             }
 
             .desk-summary {
@@ -387,15 +393,14 @@
                 transform: rotate(180deg);
             }
 
-            /* Плавна анімація відкриття на ПК */
             .desk-accordion[open] .desk-content {
                 animation: expandAccordion 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
 
             .desk-content {
                 padding: 20px;
-                background-color: rgba(3, 3, 3, 0.95);
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                background-color: rgba(10, 10, 10, 0.9);
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
                 overflow: hidden;
             }
 
@@ -411,7 +416,7 @@
                 justify-content: space-between;
                 gap: 10px;
                 padding: 12px 14px;
-                background-color: rgba(10, 10, 10, 0.9);
+                background-color: rgba(15, 15, 15, 0.85);
                 border: 1px solid rgba(255, 255, 255, 0.15);
                 text-decoration: none;
                 color: #fff;
@@ -420,7 +425,7 @@
             }
 
             .desk-device-item:hover {
-                background-color: rgba(26, 26, 26, 0.95);
+                background-color: rgba(30, 30, 30, 0.95);
                 border-color: #ffffff;
                 transform: translateY(-2px);
             }
@@ -466,7 +471,7 @@
 
             .desk-spec-row {
                 padding: 8px 12px;
-                background-color: rgba(17, 17, 17, 0.9);
+                background-color: rgba(20, 20, 20, 0.85);
                 border-radius: 6px;
                 font-size: 0.85rem;
                 font-weight: 800;
@@ -610,7 +615,7 @@
                                 <span class="desk-device-name">EPOMAKER GALAXY 70</span>
                             </div>
                         </a>
-                        <div class="device-item desk-device-item" style="border:none; padding:0;"></div>
+                        <div class="device-item desk-device-item" style="border:none; padding:0; background:transparent;"></div>
                         <div class="desk-device-item">
                             <div class="desk-device-left">
                                 <img src="клава hator.jpg" class="desk-device-img" alt="HATOR ROCKFALL 2">
