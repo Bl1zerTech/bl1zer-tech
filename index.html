@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BL1ZER.TECH</title>
     <style>
         * {
@@ -10,20 +10,25 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Прибирає синю підсвітку при кліку на мобільних і ПК */
+        }
+
+        html, body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden; /* Повністю забороняє прокрутку сайту вгору-вниз */
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=6');
+            background-image: url('FONupdate.jpg?v=8');
             background-repeat: no-repeat;
             background-position: center center;
-            background-attachment: fixed;
             background-size: cover;
             color: #ffffff;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 16px;
+            padding: 16px;
         }
 
         .mobile-version, .desktop-version {
@@ -31,77 +36,80 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes expandAccordion {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-                max-height: 0;
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                max-height: 500px;
-            }
+        /* Стилі для неклікабельних девайсів */
+        .device-item.disabled,
+        .desk-device-item.disabled {
+            opacity: 0.55;
+            filter: grayscale(80%);
+            cursor: default;
+            transition: all 0.2s ease;
         }
 
+        .device-item.disabled:hover,
+        .desk-device-item.disabled:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            background-color: transparent;
+            transform: none;
+        }
+
+
         /* ==========================================
-           МОБІЛЬНА ВЕРСІЯ (Екрани до 768px включно)
+           МОБІЛЬНА ВЕРСІЯ (Оптимізована, без лагів)
            ========================================== */
         @media (max-width: 768px) {
             .mobile-version {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                max-width: 380px;
-                gap: 14px;
+                max-width: 360px;
+                gap: 10px;
                 align-items: center;
-                animation: fadeIn 0.4s ease-in-out;
+                animation: fadeIn 0.3s ease-out;
             }
 
             .profile {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin-bottom: 6px;
+                margin-bottom: 2px;
             }
 
             .avatar {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
                 object-fit: cover;
                 border: 2px solid #ffffff;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-                margin-bottom: 10px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+                margin-bottom: 8px;
             }
 
             .username {
-                font-size: 1.3rem;
+                font-size: 1.15rem;
                 font-weight: 900;
                 color: #ffffff;
                 text-transform: uppercase;
                 letter-spacing: 1.5px;
-                text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+                text-shadow: 0 2px 6px rgba(0,0,0,0.8);
             }
 
             .accordion {
                 width: 100%;
-                background-color: rgba(18, 18, 18, 0.75);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.25);
-                border-radius: 16px;
+                background-color: rgba(12, 12, 12, 0.92); /* Легкий темний фон замість важкого blur */
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 14px;
                 overflow: hidden;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             }
 
             summary {
                 list-style: none;
-                padding: 16px 20px;
-                font-size: 1rem;
+                padding: 12px 16px;
+                font-size: 0.9rem;
                 font-weight: 800;
                 text-transform: uppercase;
                 cursor: pointer;
@@ -109,7 +117,6 @@
                 justify-content: space-between;
                 align-items: center;
                 color: #ffffff;
-                letter-spacing: 0.5px;
             }
 
             summary::-webkit-details-marker {
@@ -118,34 +125,29 @@
 
             summary::after {
                 content: '∨';
-                font-size: 1.1rem;
+                font-size: 1rem;
                 font-weight: bold;
-                transition: transform 0.3s ease;
+                transition: transform 0.2s ease;
             }
 
             details[open] summary::after {
                 transform: rotate(180deg);
             }
 
-            details[open] .content {
-                animation: expandAccordion 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            }
-
             .content {
-                padding: 12px 16px 16px 16px;
-                background-color: rgba(10, 10, 10, 0.85);
-                border-top: 1px solid rgba(255, 255, 255, 0.15);
-                overflow: hidden;
+                padding: 10px 14px 14px 14px;
+                background-color: rgba(5, 5, 5, 0.95);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .pc-container {
                 display: flex;
-                gap: 12px;
+                gap: 10px;
                 align-items: center;
             }
 
             .pc-image {
-                width: 110px;
+                width: 95px;
                 height: auto;
                 border-radius: 6px;
                 object-fit: contain;
@@ -158,9 +160,9 @@
             }
 
             .spec-row {
-                padding: 6px 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-                font-size: 0.75rem;
+                padding: 4px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 0.7rem;
                 font-weight: 800;
                 text-transform: uppercase;
                 color: #dddddd;
@@ -179,12 +181,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 12px;
-                padding: 10px 8px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                gap: 10px;
+                padding: 8px 6px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
                 text-decoration: none;
                 color: #fff;
-                border-radius: 8px;
+                border-radius: 6px;
             }
 
             .device-item:last-child {
@@ -194,77 +196,68 @@
             .device-left {
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                gap: 10px;
             }
 
             .device-img {
-                width: 45px;
-                height: 45px;
+                width: 36px;
+                height: 36px;
                 object-fit: contain;
                 border-radius: 4px;
             }
 
             .device-name {
-                font-size: 0.85rem;
+                font-size: 0.78rem;
                 font-weight: 800;
                 text-transform: uppercase;
                 color: #ffffff;
             }
 
             .arrow-right {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 font-weight: bold;
                 color: #888888;
             }
 
             .socials {
                 display: flex;
-                gap: 12px;
+                gap: 10px;
                 justify-content: center;
                 width: 100%;
-                margin-top: 10px;
+                margin-top: 4px;
             }
 
             .social-btn {
-                width: 58px;
-                height: 58px;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 text-decoration: none;
-                background-color: rgba(18, 18, 18, 0.75);
-                backdrop-filter: blur(8px);
+                background-color: rgba(12, 12, 12, 0.9);
                 border: 2px solid #ffffff;
                 color: #ffffff;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.5);
                 flex-shrink: 0;
-                transition: transform 0.2s ease, background-color 0.2s ease;
-            }
-
-            .social-btn:hover {
-                background-color: #ffffff;
-                color: #000000;
-                transform: scale(1.1);
             }
 
             .social-btn svg {
-                width: 26px;
-                height: 26px;
+                width: 22px;
+                height: 22px;
             }
         }
 
 
         /* ==========================================
-           ДЕСКТОПНА ВЕРСІЯ (ПК - від 769px і ширше)
+           ДЕСКТОПНА ВЕРСІЯ (ПК)
            ========================================== */
         @media (min-width: 769px) {
             .desktop-version {
                 display: flex;
                 width: 100%;
                 max-width: 980px;
-                background-color: rgba(15, 15, 15, 0.75);
-                backdrop-filter: blur(14px);
+                background-color: rgba(15, 15, 15, 0.8);
+                backdrop-filter: blur(12px);
                 border: 1px solid rgba(255, 255, 255, 0.25);
                 border-radius: 24px;
                 padding: 45px;
@@ -393,15 +386,10 @@
                 transform: rotate(180deg);
             }
 
-            .desk-accordion[open] .desk-content {
-                animation: expandAccordion 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            }
-
             .desk-content {
                 padding: 20px;
                 background-color: rgba(10, 10, 10, 0.9);
                 border-top: 1px solid rgba(255, 255, 255, 0.15);
-                overflow: hidden;
             }
 
             .desk-device-grid {
@@ -516,22 +504,24 @@
                         </div>
                         <span class="arrow-right">></span>
                     </a>
-                    <div class="device-item">
+                    
+                    <!-- Неклікабельні девайси (FiiO) -->
+                    <div class="device-item disabled">
                         <div class="device-left">
-                            <img src="клава hator.jpg" class="device-img" alt="HATOR ROCKFALL 2">
-                            <span class="device-name">HATOR ROCKFALL 2</span>
+                            <img src="клава hator.jpg" class="device-img" alt="FIIO A6">
+                            <span class="device-name">FIIO A6</span>
                         </div>
                     </div>
-                    <div class="device-item">
+                    <div class="device-item disabled">
                         <div class="device-left">
-                            <img src="мишка.png" class="device-img" alt="HATOR QUASAR 2 PRO">
-                            <span class="device-name">HATOR QUASAR 2 PRO</span>
+                            <img src="мишка.png" class="device-img" alt="FIIO Q1 MARK II">
+                            <span class="device-name">FIIO Q1 MARK II</span>
                         </div>
                     </div>
-                    <div class="device-item">
+                    <div class="device-item disabled">
                         <div class="device-left">
-                            <img src="мікро.png" class="device-img" alt="FIFINE A6V">
-                            <span class="device-name">FIFINE A6V</span>
+                            <img src="мікро.png" class="device-img" alt="FIIO Q3">
+                            <span class="device-name">FIIO Q3</span>
                         </div>
                     </div>
                 </div>
@@ -615,23 +605,25 @@
                                 <span class="desk-device-name">EPOMAKER GALAXY 70</span>
                             </div>
                         </a>
+                        
                         <div class="device-item desk-device-item" style="border:none; padding:0; background:transparent;"></div>
-                        <div class="desk-device-item">
+                        
+                        <div class="desk-device-item disabled">
                             <div class="desk-device-left">
-                                <img src="клава hator.jpg" class="desk-device-img" alt="HATOR ROCKFALL 2">
-                                <span class="desk-device-name">HATOR ROCKFALL 2</span>
+                                <img src="клава hator.jpg" class="desk-device-img" alt="FIIO A6">
+                                <span class="desk-device-name">FIIO A6</span>
                             </div>
                         </div>
-                        <div class="desk-device-item">
+                        <div class="desk-device-item disabled">
                             <div class="desk-device-left">
-                                <img src="мишка.png" class="desk-device-img" alt="HATOR QUASAR 2 PRO">
-                                <span class="desk-device-name">HATOR QUASAR 2 PRO</span>
+                                <img src="мишка.png" class="desk-device-img" alt="FIIO Q1 MARK II">
+                                <span class="desk-device-name">FIIO Q1 MARK II</span>
                             </div>
                         </div>
-                        <div class="desk-device-item">
+                        <div class="desk-device-item disabled">
                             <div class="desk-device-left">
-                                <img src="мікро.png" class="desk-device-img" alt="FIFINE A6V">
-                                <span class="desk-device-name">FIFINE A6V</span>
+                                <img src="мікро.png" class="desk-device-img" alt="FIIO Q3">
+                                <span class="desk-device-name">FIIO Q3</span>
                             </div>
                         </div>
                     </div>
