@@ -13,14 +13,7 @@
         }
 
         body {
-            background-color: #000000;
-            background-image: url('FONupdate.jpg?v=3');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            background-size: cover;
-            /* Затемнення фону для монохрому */
-            background-blend-mode: overlay;
+            background-color: #000000; /* Чисто чорний фон */
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -52,7 +45,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #ffffff;
-            box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+            box-shadow: 0 4px 20px rgba(255,255,255,0.2);
             margin-bottom: 10px;
             transition: transform 0.3s ease;
         }
@@ -67,14 +60,13 @@
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         }
 
         /* Чорно-білі блоки (Акордеони) */
         .accordion {
             width: 100%;
-            background-color: #111111;
-            border: 1px solid #333333;
+            background-color: #0c0c0c;
+            border: 1px solid #262626;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.8);
@@ -116,8 +108,8 @@
 
         .content {
             padding: 12px 16px 16px 16px;
-            background-color: #080808;
-            border-top: 1px solid #222222;
+            background-color: #000000;
+            border-top: 1px solid #1a1a1a;
         }
 
         /* ПК Блок */
@@ -174,7 +166,7 @@
         }
 
         .device-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
         .device-item:last-child {
@@ -216,7 +208,7 @@
             color: #ffffff;
         }
 
-        /* Соціальні мережі (Чорно-білі) */
+        /* Соціальні мережі */
         .socials {
             display: flex;
             gap: 12px;
