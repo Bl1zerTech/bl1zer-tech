@@ -10,17 +10,17 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            -webkit-tap-highlight-color: transparent; /* Прибирає синю підсвітку при кліку на мобільних і ПК */
+            -webkit-tap-highlight-color: transparent;
         }
 
         html, body {
             width: 100%;
             height: 100vh;
-            overflow: hidden; /* Повністю забороняє прокрутку сайту вгору-вниз */
+            overflow: hidden;
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=8');
+            background-image: url('FONupdate.jpg?v=9');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -40,7 +40,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Стилі для неклікабельних девайсів */
+        /* Стилі для неклікабельних девайсів (сіренькі у звичайному стані, при наведенні стають нормальними) */
         .device-item.disabled,
         .desk-device-item.disabled {
             opacity: 0.55;
@@ -59,7 +59,7 @@
 
 
         /* ==========================================
-           МОБІЛЬНА ВЕРСІЯ (Оптимізована, без лагів)
+           МОБІЛЬНА ВЕРСІЯ (Без лагів, без анімацій)
            ========================================== */
         @media (max-width: 768px) {
             .mobile-version {
@@ -69,7 +69,6 @@
                 max-width: 360px;
                 gap: 10px;
                 align-items: center;
-                animation: fadeIn 0.3s ease-out;
             }
 
             .profile {
@@ -100,7 +99,7 @@
 
             .accordion {
                 width: 100%;
-                background-color: rgba(12, 12, 12, 0.92); /* Легкий темний фон замість важкого blur */
+                background-color: rgba(12, 12, 12, 0.92);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 14px;
                 overflow: hidden;
@@ -505,7 +504,25 @@
                         <span class="arrow-right">></span>
                     </a>
                     
-                    <!-- Неклікабельні девайси (FiiO) -->
+                    <!-- Неклікабельні девайси (Hator, Fifine, FiiO) -->
+                    <div class="device-item disabled">
+                        <div class="device-left">
+                            <img src="клава hator.jpg" class="device-img" alt="HATOR ROCKFALL 2">
+                            <span class="device-name">HATOR ROCKFALL 2</span>
+                        </div>
+                    </div>
+                    <div class="device-item disabled">
+                        <div class="device-left">
+                            <img src="мишка.png" class="device-img" alt="HATOR QUASAR 2 PRO">
+                            <span class="device-name">HATOR QUASAR 2 PRO</span>
+                        </div>
+                    </div>
+                    <div class="device-item disabled">
+                        <div class="device-left">
+                            <img src="мікро.png" class="device-img" alt="FIFINE A6V">
+                            <span class="device-name">FIFINE A6V</span>
+                        </div>
+                    </div>
                     <div class="device-item disabled">
                         <div class="device-left">
                             <img src="клава hator.jpg" class="device-img" alt="FIIO A6">
@@ -608,6 +625,25 @@
                         
                         <div class="device-item desk-device-item" style="border:none; padding:0; background:transparent;"></div>
                         
+                        <!-- Неклікабельні девайси на ПК -->
+                        <div class="desk-device-item disabled">
+                            <div class="desk-device-left">
+                                <img src="клава hator.jpg" class="desk-device-img" alt="HATOR ROCKFALL 2">
+                                <span class="desk-device-name">HATOR ROCKFALL 2</span>
+                            </div>
+                        </div>
+                        <div class="desk-device-item disabled">
+                            <div class="desk-device-left">
+                                <img src="мишка.png" class="desk-device-img" alt="HATOR QUASAR 2 PRO">
+                                <span class="desk-device-name">HATOR QUASAR 2 PRO</span>
+                            </div>
+                        </div>
+                        <div class="desk-device-item disabled">
+                            <div class="desk-device-left">
+                                <img src="мікро.png" class="desk-device-img" alt="FIFINE A6V">
+                                <span class="desk-device-name">FIFINE A6V</span>
+                            </div>
+                        </div>
                         <div class="desk-device-item disabled">
                             <div class="desk-device-left">
                                 <img src="клава hator.jpg" class="desk-device-img" alt="FIIO A6">
