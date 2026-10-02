@@ -20,7 +20,7 @@
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=13');
+            background-image: url('FONupdate.jpg?v=14');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -40,22 +40,23 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Стилі для неклікабельних девайсів (сіренькі, при наведенні НЕ рухаються і не підсвічуються) */
+        /* Жорстке вимкнення будь-яких рухів, підсвічування та ефектів для неклікабельних девайсів */
         .device-item.disabled,
         .desk-device-item.disabled {
-            opacity: 0.55;
-            filter: grayscale(80%);
-            cursor: default;
+            opacity: 0.55 !important;
+            filter: grayscale(80%) !important;
+            cursor: default !important;
             transform: none !important;
-            transition: opacity 0.2s ease, filter 0.2s ease;
+            background-color: transparent !important;
+            pointer-events: none; /* Повністю блокує будь-які взаємодії з мишкою/тачем */
         }
 
         .device-item.disabled:hover,
         .desk-device-item.disabled:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-            background-color: transparent;
+            opacity: 0.55 !important;
+            filter: grayscale(80%) !important;
             transform: none !important;
+            background-color: transparent !important;
         }
 
 
