@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #000000; /* Чисто чорний фон */
+            background-color: #000000;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -22,24 +22,36 @@
             padding: 20px 16px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 380px;
+        /* КЕРУВАННЯ ПОКАЗОМ: за замовчуванням мобільна версія видима, десктопна схована */
+        .desktop-version {
+            display: none;
+        }
+        .mobile-version {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            width: 100%;
+            max-width: 380px;
             gap: 14px;
+            align-items: center;
+            animation: fadeIn 0.6s ease-in-out;
         }
 
-        /* Аватарка та нік */
-        .profile {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================
+           СТИЛІ МОБІЛЬНОЇ ВЕРСІЇ
+           ========================================== */
+        .mobile-version .profile {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 6px;
         }
 
-        .avatar {
+        .mobile-version .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
@@ -50,11 +62,11 @@
             transition: transform 0.3s ease;
         }
 
-        .avatar:hover {
+        .mobile-version .avatar:hover {
             transform: scale(1.03);
         }
 
-        .username {
+        .mobile-version .username {
             font-size: 1.3rem;
             font-weight: 900;
             color: #ffffff;
@@ -62,22 +74,21 @@
             letter-spacing: 1.5px;
         }
 
-        /* Чорно-білі блоки (Акордеони) */
-        .accordion {
+        .mobile-version .accordion {
             width: 100%;
             background-color: #0c0c0c;
             border: 1px solid #262626;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-            transition: border-color 0.2s ease;
+            transition: border-color 0.3s ease, transform 0.2s ease;
         }
 
-        .accordion:hover {
+        .mobile-version .accordion:hover {
             border-color: #555555;
         }
 
-        summary {
+        .mobile-version summary {
             list-style: none;
             padding: 16px 20px;
             font-size: 1rem;
@@ -91,35 +102,40 @@
             letter-spacing: 0.5px;
         }
 
-        summary::-webkit-details-marker {
+        .mobile-version summary::-webkit-details-marker {
             display: none;
         }
 
-        summary::after {
+        .mobile-version summary::after {
             content: '∨';
             font-size: 1.1rem;
             font-weight: bold;
             transition: transform 0.3s ease;
         }
 
-        details[open] summary::after {
+        .mobile-version details[open] summary::after {
             transform: rotate(180deg);
         }
 
-        .content {
+        .mobile-version .content {
             padding: 12px 16px 16px 16px;
             background-color: #000000;
             border-top: 1px solid #1a1a1a;
+            animation: slideDown 0.3s ease;
         }
 
-        /* ПК Блок */
-        .pc-container {
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-version .pc-container {
             display: flex;
             gap: 12px;
             align-items: center;
         }
 
-        .pc-image {
+        .mobile-version .pc-image {
             width: 110px;
             height: auto;
             border-radius: 6px;
@@ -127,13 +143,13 @@
             filter: grayscale(100%);
         }
 
-        .pc-specs {
+        .mobile-version .pc-specs {
             display: flex;
             flex-direction: column;
             width: 100%;
         }
 
-        .spec-row {
+        .mobile-version .spec-row {
             padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.75rem;
@@ -142,17 +158,16 @@
             color: #dddddd;
         }
 
-        .spec-row:last-child {
+        .mobile-version .spec-row:last-child {
             border-bottom: none;
         }
 
-        /* Девайси */
-        .device-list {
+        .mobile-version .device-list {
             display: flex;
             flex-direction: column;
         }
 
-        .device-item {
+        .mobile-version .device-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -162,24 +177,25 @@
             text-decoration: none;
             color: #fff;
             border-radius: 8px;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
-        .device-item:hover {
+        .mobile-version .device-item:hover {
             background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(3px);
         }
 
-        .device-item:last-child {
+        .mobile-version .device-item:last-child {
             border-bottom: none;
         }
 
-        .device-left {
+        .mobile-version .device-left {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .device-img {
+        .mobile-version .device-img {
             width: 45px;
             height: 45px;
             object-fit: contain;
@@ -187,29 +203,26 @@
             filter: grayscale(20%);
         }
 
-        .device-name {
+        .mobile-version .device-name {
             font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
             color: #ffffff;
         }
 
-        /* Стрілочка вправо */
-        .arrow-right {
+        .mobile-version .arrow-right {
             font-size: 1.1rem;
             font-weight: bold;
             color: #888888;
             transition: transform 0.2s ease, color 0.2s ease;
-            user-select: none;
         }
 
-        .device-item.clickable:hover .arrow-right {
-            transform: translateX(5px);
+        .mobile-version .device-item.clickable:hover .arrow-right {
+            transform: translateX(4px);
             color: #ffffff;
         }
 
-        /* Соціальні мережі */
-        .socials {
+        .mobile-version .socials {
             display: flex;
             gap: 12px;
             justify-content: center;
@@ -217,7 +230,7 @@
             margin-top: 10px;
         }
 
-        .social-btn {
+        .mobile-version .social-btn {
             width: 58px;
             height: 58px;
             border-radius: 50%;
@@ -233,36 +246,262 @@
             flex-shrink: 0;
         }
 
-        .social-btn:hover {
+        .mobile-version .social-btn:hover {
             background-color: #ffffff;
             color: #000000;
             transform: scale(1.1);
             box-shadow: 0 0 20px rgba(255,255,255,0.4);
         }
 
-        .social-btn svg {
+        .mobile-version .social-btn svg {
             width: 26px;
             height: 26px;
         }
 
+
+        /* ==========================================
+           СТИЛІ ДЕСКТОПНОЇ (ПК) ВЕРСІЇ (Ширина від 769px)
+           ========================================== */
+        @media (min-width: 769px) {
+            .mobile-version {
+                display: none;
+            }
+            .desktop-version {
+                display: flex;
+                width: 100%;
+                max-width: 980px;
+                background-color: #080808;
+                border: 1px solid #222222;
+                border-radius: 24px;
+                padding: 45px;
+                gap: 50px;
+                box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+                align-items: center;
+                animation: fadeIn 0.6s ease-in-out;
+            }
+
+            /* Ліва колонка ПК: аватар, нік та соцмережі в один рядок під ним */
+            .desk-left {
+                width: 300px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-right: 1px solid #222222;
+                padding-right: 45px;
+                text-align: center;
+            }
+
+            .desk-avatar {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #ffffff;
+                box-shadow: 0 4px 25px rgba(255,255,255,0.2);
+                margin-bottom: 18px;
+                transition: transform 0.3s ease;
+            }
+
+            .desk-avatar:hover {
+                transform: scale(1.05);
+            }
+
+            .desk-username {
+                font-size: 1.6rem;
+                font-weight: 900;
+                color: #ffffff;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 25px;
+            }
+
+            .desk-socials {
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .desk-social-btn {
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                background-color: #000000;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                transition: all 0.25s ease;
+                flex-shrink: 0;
+            }
+
+            .desk-social-btn:hover {
+                background-color: #ffffff;
+                color: #000000;
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(255,255,255,0.4);
+            }
+
+            .desk-social-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            /* Права колонка ПК: акордеони (девайси та ПК) */
+            .desk-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .desk-accordion {
+                width: 100%;
+                background-color: #0f0f0f;
+                border: 1px solid #333333;
+                border-radius: 16px;
+                overflow: hidden;
+                transition: border-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            }
+
+            .desk-accordion:hover {
+                border-color: #666666;
+            }
+
+            .desk-summary {
+                list-style: none;
+                padding: 18px 24px;
+                font-size: 1.1rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #ffffff;
+                letter-spacing: 1px;
+            }
+
+            .desk-summary::-webkit-details-marker {
+                display: none;
+            }
+
+            /* Стрілочка для ПК акордеона */
+            .desk-summary::after {
+                content: '∨';
+                font-size: 1.2rem;
+                font-weight: bold;
+                transition: transform 0.3s ease;
+            }
+
+            .desk-accordion[open] .desk-summary::after {
+                transform: rotate(180deg);
+            }
+
+            .desk-content {
+                padding: 20px;
+                background-color: #030303;
+                border-top: 1px solid #222222;
+                animation: slideDown 0.3s ease;
+            }
+
+            .desk-device-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .desk-device-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                padding: 12px 14px;
+                background-color: #0a0a0a;
+                border: 1px solid #222222;
+                text-decoration: none;
+                color: #fff;
+                border-radius: 10px;
+                transition: all 0.2s ease;
+            }
+
+            .desk-device-item:hover {
+                background-color: #1a1a1a;
+                border-color: #ffffff;
+                transform: translateY(-2px);
+            }
+
+            .desk-device-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .desk-device-img {
+                width: 40px;
+                height: 40px;
+                object-fit: contain;
+                border-radius: 4px;
+            }
+
+            .desk-device-name {
+                font-size: 0.8rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: #ffffff;
+            }
+
+            .desk-pc-box {
+                display: flex;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .desk-pc-image {
+                width: 150px;
+                height: auto;
+                object-fit: contain;
+                filter: grayscale(100%);
+            }
+
+            .desk-pc-specs {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 8px;
+            }
+
+            .desk-spec-row {
+                padding: 8px 12px;
+                background-color: #111111;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: #ffffff;
+                border: 1px solid #262626;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- Профіль -->
+    <!-- ==========================================
+         МОБІЛЬНА ВЕРСІЯ (Для телефонів)
+         ========================================== -->
+    <div class="mobile-version">
         <div class="profile">
             <img src="ava.jpeg" alt="BL1ZER.TECH" class="avatar">
             <h1 class="username">BL1ZER.TECH</h1>
         </div>
 
-        <!-- ДЕВАЙСЫ С ВИДЕО -->
         <details class="accordion">
             <summary>ДЕВАЙСЫ С ВИДЕО</summary>
             <div class="content">
                 <div class="device-list">
-                    <!-- 1. EPOMAKER QK108 -->
                     <a href="https://t.me/devaisuBl1zer/7" target="_blank" class="device-item clickable">
                         <div class="device-left">
                             <img src="EPOMAKERQK108.png?v=3" class="device-img" alt="EPOMAKER QK108">
@@ -270,8 +509,6 @@
                         </div>
                         <span class="arrow-right">></span>
                     </a>
-
-                    <!-- 2. EPOMAKER CARBON X -->
                     <a href="https://t.me/devaisuBl1zer/12" target="_blank" class="device-item clickable">
                         <div class="device-left">
                             <img src="EpomakerCarbonX.png?v=3" class="device-img" alt="EPOMAKER CARBON X">
@@ -279,8 +516,6 @@
                         </div>
                         <span class="arrow-right">></span>
                     </a>
-
-                    <!-- 3. EPOMAKER GALAXY 70 -->
                     <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="device-item clickable">
                         <div class="device-left">
                             <img src="EPOKAKA%20galaxy%2070.png?v=3" class="device-img" alt="EPOMAKER GALAXY 70">
@@ -288,24 +523,18 @@
                         </div>
                         <span class="arrow-right">></span>
                     </a>
-                    
-                    <!-- HATOR ROCKFALL 2 -->
                     <div class="device-item">
                         <div class="device-left">
                             <img src="клава hator.jpg" class="device-img" alt="HATOR ROCKFALL 2">
                             <span class="device-name">HATOR ROCKFALL 2</span>
                         </div>
                     </div>
-
-                    <!-- HATOR QUASAR 2 PRO -->
                     <div class="device-item">
                         <div class="device-left">
                             <img src="мишка.png" class="device-img" alt="HATOR QUASAR 2 PRO">
                             <span class="device-name">HATOR QUASAR 2 PRO</span>
                         </div>
                     </div>
-
-                    <!-- FIFINE A6V -->
                     <div class="device-item">
                         <div class="device-left">
                             <img src="мікро.png" class="device-img" alt="FIFINE A6V">
@@ -316,7 +545,6 @@
             </div>
         </details>
 
-        <!-- МОЙ ПК -->
         <details class="accordion">
             <summary>МОЙ ПК</summary>
             <div class="content">
@@ -332,29 +560,109 @@
             </div>
         </details>
 
-        <!-- 4 Соціальні мережі -->
         <div class="socials">
-            <!-- Telegram -->
-            <a href="https://t.me/devaisuBl1zer" target="_blank" class="social-btn tg" title="Telegram">
+            <a href="https://t.me/devaisuBl1zer" target="_blank" class="social-btn" title="Telegram">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.568 8.16c-.18 1.897-.96 6.502-1.356 8.627-.168.9-.504 1.201-.816 1.23-.696.06-1.224-.46-1.896-.9-1.056-.696-1.656-1.128-2.676-1.8-1.188-.78-.42-1.212.252-1.908.18-.18 3.252-2.976 3.312-3.228.012-.036.012-.168-.072-.24-.096-.072-.228-.048-.324-.024-.144.024-2.352 1.5-6.648 4.416-.624.432-1.188.648-1.704.636-.564-.012-1.644-.312-2.448-.576-.984-.324-1.764-.504-1.692-1.056.036-.288.432-.588 1.212-.9 4.752-2.076 7.932-3.444 9.54-4.116 4.548-1.896 5.496-2.232 6.108-2.244.132 0 .444.036.648.204.168.144.216.336.24.54-.012.084-.012.168-.024.276z"/></svg>
             </a>
-
-            <!-- TikTok -->
-            <a href="https://www.tiktok.com/@bl1zer.tech" target="_blank" class="social-btn tt" title="TikTok">
+            <a href="https://www.tiktok.com/@bl1zer.tech" target="_blank" class="social-btn" title="TikTok">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.31 1.53-1.33 2.53-.02.94.38 1.88 1.07 2.51.8.74 1.98.98 3.02.68.97-.26 1.78-1.02 2.13-1.97.23-.58.33-1.21.32-1.84.02-4.96.01-9.91.01-14.86z"/></svg>
             </a>
-
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/bl1zer.tech/" target="_blank" class="social-btn ig" title="Instagram">
+            <a href="https://www.instagram.com/bl1zer.tech/" target="_blank" class="social-btn" title="Instagram">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
-
-            <!-- YouTube -->
-            <a href="https://www.youtube.com/@Bl1zerTech" target="_blank" class="social-btn yt" title="YouTube">
+            <a href="https://www.youtube.com/@Bl1zerTech" target="_blank" class="social-btn" title="YouTube">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
         </div>
+    </div>
 
+
+    <!-- ==========================================
+         ДЕСКТОПНА ВЕРСІЯ (Для ПК та ноутбуків)
+         ========================================== -->
+    <div class="desktop-version">
+        <!-- Ліва частина: Аватар, Нік, Соцмережі в один рядок -->
+        <div class="desk-left">
+            <img src="ava.jpeg" alt="BL1ZER.TECH" class="desk-avatar">
+            <h1 class="desk-username">BL1ZER.TECH</h1>
+            
+            <div class="desk-socials">
+                <a href="https://t.me/devaisuBl1zer" target="_blank" class="desk-social-btn" title="Telegram">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.568 8.16c-.18 1.897-.96 6.502-1.356 8.627-.168.9-.504 1.201-.816 1.23-.696.06-1.224-.46-1.896-.9-1.056-.696-1.656-1.128-2.676-1.8-1.188-.78-.42-1.212.252-1.908.18-.18 3.252-2.976 3.312-3.228.012-.036.012-.168-.072-.24-.096-.072-.228-.048-.324-.024-.144.024-2.352 1.5-6.648 4.416-.624.432-1.188.648-1.704.636-.564-.012-1.644-.312-2.448-.576-.984-.324-1.764-.504-1.692-1.056.036-.288.432-.588 1.212-.9 4.752-2.076 7.932-3.444 9.54-4.116 4.548-1.896 5.496-2.232 6.108-2.244.132 0 .444.036.648.204.168.144.216.336.24.54-.012.084-.012.168-.024.276z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@bl1zer.tech" target="_blank" class="desk-social-btn" title="TikTok">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.31 1.53-1.33 2.53-.02.94.38 1.88 1.07 2.51.8.74 1.98.98 3.02.68.97-.26 1.78-1.02 2.13-1.97.23-.58.33-1.21.32-1.84.02-4.96.01-9.91.01-14.86z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/bl1zer.tech/" target="_blank" class="desk-social-btn" title="Instagram">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@Bl1zerTech" target="_blank" class="desk-social-btn" title="YouTube">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Права частина: Девайси та ПК у вигляді красивих акордеонів зі стрілочками -->
+        <div class="desk-right">
+            <details class="desk-accordion">
+                <summary class="desk-summary">ДЕВАЙСЫ С ВИДЕО</summary>
+                <div class="desk-content">
+                    <div class="desk-device-grid">
+                        <a href="https://t.me/devaisuBl1zer/7" target="_blank" class="desk-device-item">
+                            <div class="desk-device-left">
+                                <img src="EPOMAKERQK108.png?v=3" class="desk-device-img" alt="EPOMAKER QK108">
+                                <span class="desk-device-name">EPOMAKER QK108</span>
+                            </div>
+                        </a>
+                        <a href="https://t.me/devaisuBl1zer/12" target="_blank" class="desk-device-item">
+                            <div class="desk-device-left">
+                                <img src="EpomakerCarbonX.png?v=3" class="desk-device-img" alt="EPOMAKER CARBON X">
+                                <span class="desk-device-name">EPOMAKER CARBON X</span>
+                            </div>
+                        </a>
+                        <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="desk-device-item">
+                            <div class="desk-device-left">
+                                <img src="EPOKAKA%20galaxy%2070.png?v=3" class="desk-device-img" alt="EPOMAKER GALAXY 70">
+                                <span class="desk-device-name">EPOMAKER GALAXY 70</span>
+                            </div>
+                        </a>
+                        <div class="desk-device-item">
+                            <div class="desk-device-left">
+                                <img src="клава hator.jpg" class="desk-device-img" alt="HATOR ROCKFALL 2">
+                                <span class="desk-device-name">HATOR ROCKFALL 2</span>
+                            </div>
+                        </div>
+                        <div class="desk-device-item">
+                            <div class="desk-device-left">
+                                <img src="мишка.png" class="desk-device-img" alt="HATOR QUASAR 2 PRO">
+                                <span class="desk-device-name">HATOR QUASAR 2 PRO</span>
+                            </div>
+                        </div>
+                        <div class="desk-device-item">
+                            <div class="desk-device-left">
+                                <img src="мікро.png" class="desk-device-img" alt="FIFINE A6V">
+                                <span class="desk-device-name">FIFINE A6V</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="desk-accordion">
+                <summary class="desk-summary">МОЙ ПК</summary>
+                <div class="desk-content">
+                    <div class="desk-pc-box">
+                        <img src="pk.png?v=3" class="desk-pc-image" alt="ПК">
+                        <div class="desk-pc-specs">
+                            <div class="desk-spec-row">AMD RYZEN 5 7500F</div>
+                            <div class="desk-spec-row">RTX 5060</div>
+                            <div class="desk-spec-row">32GB DDR5 G.SKILL</div>
+                            <div class="desk-spec-row">1TB SSD M2</div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
     </div>
 
 </body>
