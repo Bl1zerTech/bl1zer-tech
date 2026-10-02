@@ -20,7 +20,7 @@
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=9');
+            background-image: url('FONupdate.jpg?v=11');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -478,7 +478,8 @@
             <h1 class="username">BL1ZER.TECH</h1>
         </div>
 
-        <details class="accordion">
+        <!-- Використовуємо атрибут name для закриття інших вкладок -->
+        <details class="accordion" name="mobile-menu">
             <summary>ДЕВАЙСЫ С ВИДЕО</summary>
             <div class="content">
                 <div class="device-list">
@@ -504,7 +505,6 @@
                         <span class="arrow-right">></span>
                     </a>
                     
-                    <!-- Неклікабельні девайси (Hator, Fifine, FiiO) -->
                     <div class="device-item disabled">
                         <div class="device-left">
                             <img src="клава hator.jpg" class="device-img" alt="HATOR ROCKFALL 2">
@@ -523,29 +523,11 @@
                             <span class="device-name">FIFINE A6V</span>
                         </div>
                     </div>
-                    <div class="device-item disabled">
-                        <div class="device-left">
-                            <img src="клава hator.jpg" class="device-img" alt="FIIO A6">
-                            <span class="device-name">FIIO A6</span>
-                        </div>
-                    </div>
-                    <div class="device-item disabled">
-                        <div class="device-left">
-                            <img src="мишка.png" class="device-img" alt="FIIO Q1 MARK II">
-                            <span class="device-name">FIIO Q1 MARK II</span>
-                        </div>
-                    </div>
-                    <div class="device-item disabled">
-                        <div class="device-left">
-                            <img src="мікро.png" class="device-img" alt="FIIO Q3">
-                            <span class="device-name">FIIO Q3</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </details>
 
-        <details class="accordion">
+        <details class="accordion" name="mobile-menu">
             <summary>МОЙ ПК</summary>
             <div class="content">
                 <div class="pc-container">
@@ -600,7 +582,8 @@
         </div>
 
         <div class="desk-right">
-            <details class="desk-accordion">
+            <!-- Використовуємо атрибут name для закриття інших вкладок на ПК -->
+            <details class="desk-accordion" name="desktop-menu">
                 <summary class="desk-summary">ДЕВАЙСЫ С ВИДЕО</summary>
                 <div class="desk-content">
                     <div class="desk-device-grid">
@@ -625,7 +608,6 @@
                         
                         <div class="device-item desk-device-item" style="border:none; padding:0; background:transparent;"></div>
                         
-                        <!-- Неклікабельні девайси на ПК -->
                         <div class="desk-device-item disabled">
                             <div class="desk-device-left">
                                 <img src="клава hator.jpg" class="desk-device-img" alt="HATOR ROCKFALL 2">
@@ -644,29 +626,11 @@
                                 <span class="desk-device-name">FIFINE A6V</span>
                             </div>
                         </div>
-                        <div class="desk-device-item disabled">
-                            <div class="desk-device-left">
-                                <img src="клава hator.jpg" class="desk-device-img" alt="FIIO A6">
-                                <span class="desk-device-name">FIIO A6</span>
-                            </div>
-                        </div>
-                        <div class="desk-device-item disabled">
-                            <div class="desk-device-left">
-                                <img src="мишка.png" class="desk-device-img" alt="FIIO Q1 MARK II">
-                                <span class="desk-device-name">FIIO Q1 MARK II</span>
-                            </div>
-                        </div>
-                        <div class="desk-device-item disabled">
-                            <div class="desk-device-left">
-                                <img src="мікро.png" class="desk-device-img" alt="FIIO Q3">
-                                <span class="desk-device-name">FIIO Q3</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </details>
 
-            <details class="desk-accordion">
+            <details class="desk-accordion" name="desktop-menu">
                 <summary class="desk-summary">МОЙ ПК</summary>
                 <div class="desk-content">
                     <div class="desk-pc-box">
