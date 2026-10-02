@@ -20,7 +20,7 @@
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=11');
+            background-image: url('FONupdate.jpg?v=12');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -40,13 +40,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Стилі для неклікабельних девайсів (сіренькі у звичайному стані, при наведенні стають нормальними) */
+        /* Стилі для неклікабельних девайсів (сіренькі, при наведенні НЕ рухаються і не підсвічуються) */
         .device-item.disabled,
         .desk-device-item.disabled {
             opacity: 0.55;
             filter: grayscale(80%);
             cursor: default;
-            transition: all 0.2s ease;
+            transform: none !important;
+            transition: opacity 0.2s ease, filter 0.2s ease;
         }
 
         .device-item.disabled:hover,
@@ -54,12 +55,12 @@
             opacity: 1;
             filter: grayscale(0%);
             background-color: transparent;
-            transform: none;
+            transform: none !important;
         }
 
 
         /* ==========================================
-           МОБІЛЬНА ВЕРСІЯ (Без лагів, без анімацій)
+           МОБІЛЬНА ВЕРСІЯ
            ========================================== */
         @media (max-width: 768px) {
             .mobile-version {
@@ -478,7 +479,6 @@
             <h1 class="username">BL1ZER.TECH</h1>
         </div>
 
-        <!-- Використовуємо атрибут name для закриття інших вкладок -->
         <details class="accordion" name="mobile-menu">
             <summary>ДЕВАЙСЫ С ВИДЕО</summary>
             <div class="content">
@@ -582,7 +582,6 @@
         </div>
 
         <div class="desk-right">
-            <!-- Використовуємо атрибут name для закриття інших вкладок на ПК -->
             <details class="desk-accordion" name="desktop-menu">
                 <summary class="desk-summary">ДЕВАЙСЫ С ВИДЕО</summary>
                 <div class="desk-content">
