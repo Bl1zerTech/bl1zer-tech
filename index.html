@@ -17,30 +17,40 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
+            background-color: #000000;
         }
 
         body {
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
             color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 16px;
+            position: relative;
         }
 
-        /* За замовчуванням (мобільна версія) — використовуємо вертикальне зображення FAN.jpg (9:16) */
-        body {
-            background-image: url('FAN.jpg?v=1');
+        /* Окремий шар для фону, щоб його можна було нормально повертати на ПК */
+        .bg-layer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            background-image: url('FAN.jpg?v=2');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            z-index: -1;
         }
 
-        /* На комп'ютері розвертаємо/адаптуємо фон на 16:9 через трансформацію або властивості відображення */
+        /* На комп'ютері повертаємо фон на 90 градусів (робимо з 9:16 -> 16:9) */
         @media (min-width: 769px) {
-            body {
-                /* Поворот на 90 градусів та розтягування під горизонтальний формат 16:9 */
-                background-image: url('FAN.jpg?v=1');
-                background-size: 100% 100%; /* або cover, якщо треба заповнити без спотворень */
+            .bg-layer {
+                width: 100vh;
+                height: 100vw;
+                transform: translate(-50%, -50%) rotate(90deg);
+                background-size: cover;
             }
         }
 
@@ -486,10 +496,12 @@
 </head>
 <body>
 
+    <div class="bg-layer"></div>
+
     <!-- МОБІЛЬНА ВЕРСІЯ -->
     <div class="mobile-version">
         <div class="profile">
-            <img src="ava-update.jpg" alt="BL1ZER.TECH" class="avatar">
+            <img src="ava-update.jpg?v=2" alt="BL1ZER.TECH" class="avatar">
             <h1 class="username">BL1ZER.TECH</h1>
         </div>
 
@@ -603,7 +615,7 @@
     <!-- ДЕСКТОПНА ВЕРСІЯ (ПК) -->
     <div class="desktop-version">
         <div class="desk-left">
-            <img src="ava-update.jpg" alt="BL1ZER.TECH" class="desk-avatar">
+            <img src="ava-update.jpg?v=2" alt="BL1ZER.TECH" class="desk-avatar">
             <h1 class="desk-username">BL1ZER.TECH</h1>
             
             <div class="desk-socials">
