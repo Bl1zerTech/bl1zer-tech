@@ -17,31 +17,22 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background-color: #000000;
+            margin: 0;
+            padding: 0;
         }
 
-        body {
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 16px;
-            position: relative;
-        }
-
-        /* Окремий шар для фону */
+        /* Виправлений шар фону, щоб він не зникав */
         .bg-layer {
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
-            transform: translate(-50%, -50%);
             background-image: url('FAN.jpg?v=2');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            z-index: -1;
+            z-index: 1;
         }
 
         @media (min-width: 769px) {
@@ -49,8 +40,19 @@
                 width: 100vh;
                 height: 100vw;
                 transform: translate(-50%, -50%) rotate(90deg);
-                background-size: cover;
+                top: 50%;
+                left: 50%;
             }
+        }
+
+        body {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
         }
 
         .mobile-version, .desktop-version {
@@ -60,6 +62,17 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Стилі для неклікабельних девайсів */
+        .device-item.disabled,
+        .desk-device-item.disabled {
+            opacity: 0.55 !important;
+            filter: grayscale(80%) !important;
+            cursor: default !important;
+            transform: none !important;
+            background-color: transparent !important;
+            pointer-events: none;
         }
 
         /* ==========================================
@@ -133,7 +146,7 @@
                 transition: transform 0.2s ease;
             }
 
-            details[open] summary::after {
+            details[open] > summary::after {
                 transform: rotate(180deg);
             }
 
@@ -143,23 +156,57 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
-            .sub-category-title {
-                font-size: 0.75rem;
-                font-weight: 800;
-                color: #888888;
-                margin: 8px 0 4px 4px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
+            /* Вкладені підрозділи (акордеони) всередині девайсів */
+            .sub-accordion {
+                background-color: rgba(20, 20, 20, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 10px;
+                margin-bottom: 8px;
+                overflow: hidden;
             }
 
-            .sub-category-title:first-child {
-                margin-top: 0;
+            .sub-accordion:last-child {
+                margin-bottom: 0;
+            }
+
+            .sub-summary {
+                list-style: none;
+                padding: 10px 12px;
+                font-size: 0.78rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #ffffff;
+            }
+
+            .sub-summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .sub-summary::after {
+                content: '›';
+                font-size: 1.1rem;
+                font-weight: bold;
+                transition: transform 0.2s ease;
+                color: #888;
+            }
+
+            .sub-accordion[open] .sub-summary::after {
+                transform: rotate(90deg);
+            }
+
+            .sub-content {
+                padding: 6px 10px 10px 10px;
+                background-color: rgba(10, 10, 10, 0.9);
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
             }
 
             .device-list {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
             }
 
             .device-item {
@@ -398,7 +445,7 @@
                 transition: transform 0.3s ease;
             }
 
-            .desk-accordion[open] .desk-summary::after {
+            .desk-accordion[open] > .desk-summary::after {
                 transform: rotate(180deg);
             }
 
@@ -408,17 +455,52 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.15);
             }
 
-            .desk-sub-category-title {
-                font-size: 0.8rem;
-                font-weight: 800;
-                color: #888888;
-                margin: 12px 0 6px 4px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
+            /* Десктопні підрозділи */
+            .desk-sub-accordion {
+                background-color: rgba(18, 18, 18, 0.85);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 12px;
+                margin-bottom: 12px;
+                overflow: hidden;
             }
 
-            .desk-sub-category-title:first-child {
-                margin-top: 0;
+            .desk-sub-accordion:last-child {
+                margin-bottom: 0;
+            }
+
+            .desk-sub-summary {
+                list-style: none;
+                padding: 14px 18px;
+                font-size: 0.9rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #ffffff;
+            }
+
+            .desk-sub-summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .desk-sub-summary::after {
+                content: '›';
+                font-size: 1.3rem;
+                font-weight: bold;
+                transition: transform 0.2s ease;
+                color: #888;
+            }
+
+            .desk-sub-accordion[open] .desk-sub-summary::after {
+                transform: rotate(90deg);
+            }
+
+            .desk-sub-content {
+                padding: 14px;
+                background-color: rgba(8, 8, 8, 0.95);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .desk-device-grid {
@@ -515,61 +597,88 @@
             <div class="content">
                 
                 <!-- 1. НАУШНИКИ И ЗВУК -->
-                <div class="sub-category-title">🎧 Наушники и звук</div>
-                <div class="device-list">
-                    <a href="https://t.me/devaisuBl1zer/34" target="_blank" class="device-item">
+                <details class="sub-accordion">
+                    <summary class="sub-summary">
                         <div class="device-left">
-                            <img src="fifneH6.png" class="device-img" alt="FIFINE H6">
-                            <span class="device-name">FIFINE H6</span>
+                            <img src="fifneH6.png" class="device-img" alt="Наушники">
+                            <span class="device-name">Наушники и звук</span>
                         </div>
-                        <span class="arrow-right">></span>
-                    </a>
-                </div>
+                    </summary>
+                    <div class="sub-content">
+                        <div class="device-list">
+                            <a href="https://t.me/devaisuBl1zer/34" target="_blank" class="device-item">
+                                <div class="device-left">
+                                    <img src="fifneH6.png" class="device-img" alt="FIFINE H6">
+                                    <span class="device-name">FIFINE H6</span>
+                                </div>
+                                <span class="arrow-right">></span>
+                            </a>
+                        </div>
+                    </div>
+                </details>
 
                 <!-- 2. КЛАВИАТУРЫ -->
-                <div class="sub-category-title" style="margin-top: 12px;">⌨️ Клавиатуры</div>
-                <div class="device-list">
-                    <a href="https://t.me/devaisuBl1zer/39" target="_blank" class="device-item">
+                <details class="sub-accordion">
+                    <summary class="sub-summary">
                         <div class="device-left">
-                            <img src="EPOMAKERHE60LITE.png" class="device-img" alt="EPOMAKER HE60 LITE">
-                            <span class="device-name">EPOMAKER HE60 LITE</span>
+                            <img src="EPOKAKA%20galaxy%2070.png?v=3" class="device-img" alt="Клавиатуры">
+                            <span class="device-name">Клавиатуры</span>
                         </div>
-                        <span class="arrow-right">></span>
-                    </a>
-                    <a href="https://t.me/devaisuBl1zer/31" target="_blank" class="device-item">
-                        <div class="device-left">
-                            <img src="EPOMAKER_HE60.png" class="device-img" alt="EPOMAKER HE60">
-                            <span class="device-name">EPOMAKER HE60</span>
+                    </summary>
+                    <div class="sub-content">
+                        <div class="device-list">
+                            <a href="https://t.me/devaisuBl1zer/39" target="_blank" class="device-item">
+                                <div class="device-left">
+                                    <img src="EPOMAKERHE60LITE.png" class="device-img" alt="EPOMAKER HE60 LITE">
+                                    <span class="device-name">EPOMAKER HE60 LITE</span>
+                                </div>
+                                <span class="arrow-right">></span>
+                            </a>
+                            <a href="https://t.me/devaisuBl1zer/31" target="_blank" class="device-item">
+                                <div class="device-left">
+                                    <img src="EPOMAKER_HE60.png" class="device-img" alt="EPOMAKER HE60">
+                                    <span class="device-name">EPOMAKER HE60</span>
+                                </div>
+                                <span class="arrow-right">></span>
+                            </a>
+                            <a href="https://t.me/devaisuBl1zer/7" target="_blank" class="device-item">
+                                <div class="device-left">
+                                    <img src="EPOMAKERQK108.png?v=3" class="device-img" alt="EPOMAKER QK108">
+                                    <span class="device-name">EPOMAKER QK108</span>
+                                </div>
+                                <span class="arrow-right">></span>
+                            </a>
+                            <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="device-item">
+                                <div class="device-left">
+                                    <img src="EPOKAKA%20galaxy%2070.png?v=3" class="device-img" alt="EPOMAKER GALAXY 70">
+                                    <span class="device-name">EPOMAKER GALAXY 70</span>
+                                </div>
+                                <span class="arrow-right">></span>
+                            </a>
                         </div>
-                        <span class="arrow-right">></span>
-                    </a>
-                    <a href="https://t.me/devaisuBl1zer/7" target="_blank" class="device-item">
-                        <div class="device-left">
-                            <img src="EPOMAKERQK108.png?v=3" class="device-img" alt="EPOMAKER QK108">
-                            <span class="device-name">EPOMAKER QK108</span>
-                        </div>
-                        <span class="arrow-right">></span>
-                    </a>
-                    <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="device-item">
-                        <div class="device-left">
-                            <img src="EPOKAKA%20galaxy%2070.png?v=3" class="device-img" alt="EPOMAKER GALAXY 70">
-                            <span class="device-name">EPOMAKER GALAXY 70</span>
-                        </div>
-                        <span class="arrow-right">></span>
-                    </a>
-                </div>
+                    </div>
+                </details>
 
                 <!-- 3. МЫШКИ -->
-                <div class="sub-category-title" style="margin-top: 12px;">🖱️ Мышки</div>
-                <div class="device-list">
-                    <a href="https://t.me/devaisuBl1zer/12" target="_blank" class="device-item">
+                <details class="sub-accordion">
+                    <summary class="sub-summary">
                         <div class="device-left">
-                            <img src="EpomakerCarbonX.png?v=3" class="device-img" alt="EPOMAKER CARBON X">
-                            <span class="device-name">EPOMAKER CARBON X</span>
+                            <img src="EpomakerCarbonX.png?v=3" class="device-img" alt="Мышки">
+                            <span class="device-name">Мышки</span>
                         </div>
-                        <span class="arrow-right">></span>
-                    </a>
-                </div>
+                    </summary>
+                    <div class="sub-content">
+                        <div class="device-list">
+                            <a href="https://t.me/devaisuBl1zer/12" target="_blank" class="device-item">
+                                <div class="device-left">
+                                    <img src="EpomakerCarbonX.png?v=3" class="device-img" alt="EPOMAKER CARBON X">
+                                    <span class="device-name">EPOMAKER CARBON X</span>
+                                </div>
+                                <span class="arrow-right">></span>
+                            </a>
+                        </div>
+                    </div>
+                </details>
 
             </div>
         </details>
@@ -634,55 +743,82 @@
                 <div class="desk-content">
                     
                     <!-- 1. НАУШНИКИ И ЗВУК -->
-                    <div class="desk-sub-category-title">🎧 Наушники и звук</div>
-                    <div class="desk-device-grid">
-                        <a href="https://t.me/devaisuBl1zer/34" target="_blank" class="desk-device-item">
+                    <details class="desk-sub-accordion">
+                        <summary class="desk-sub-summary">
                             <div class="desk-device-left">
-                                <img src="fifneH6.png" class="desk-device-img" alt="FIFINE H6">
-                                <span class="desk-device-name">FIFINE H6</span>
+                                <img src="fifneH6.png" class="desk-device-img" alt="Наушники">
+                                <span class="desk-device-name">Наушники и звук</span>
                             </div>
-                        </a>
-                    </div>
+                        </summary>
+                        <div class="desk-sub-content">
+                            <div class="desk-device-grid">
+                                <a href="https://t.me/devaisuBl1zer/34" target="_blank" class="desk-device-item">
+                                    <div class="desk-device-left">
+                                        <img src="fifneH6.png" class="desk-device-img" alt="FIFINE H6">
+                                        <span class="desk-device-name">FIFINE H6</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </details>
 
                     <!-- 2. КЛАВИАТУРЫ -->
-                    <div class="desk-sub-category-title" style="margin-top: 16px;">⌨️ Клавиатуры</div>
-                    <div class="desk-device-grid">
-                        <a href="https://t.me/devaisuBl1zer/39" target="_blank" class="desk-device-item">
+                    <details class="desk-sub-accordion">
+                        <summary class="desk-sub-summary">
                             <div class="desk-device-left">
-                                <img src="EPOMAKERHE60LITE.png" class="desk-device-img" alt="EPOMAKER HE60 LITE">
-                                <span class="desk-device-name">EPOMAKER HE60 LITE</span>
+                                <img src="EPOKAKA%20galaxy%2070.png?v=3" class="desk-device-img" alt="Клавиатуры">
+                                <span class="desk-device-name">Клавиатуры</span>
                             </div>
-                        </a>
-                        <a href="https://t.me/devaisuBl1zer/31" target="_blank" class="desk-device-item">
-                            <div class="desk-device-left">
-                                <img src="EPOMAKER_HE60.png" class="desk-device-img" alt="EPOMAKER HE60">
-                                <span class="desk-device-name">EPOMAKER HE60</span>
+                        </summary>
+                        <div class="desk-sub-content">
+                            <div class="desk-device-grid">
+                                <a href="https://t.me/devaisuBl1zer/39" target="_blank" class="desk-device-item">
+                                    <div class="desk-device-left">
+                                        <img src="EPOMAKERHE60LITE.png" class="desk-device-img" alt="EPOMAKER HE60 LITE">
+                                        <span class="desk-device-name">EPOMAKER HE60 LITE</span>
+                                    </div>
+                                </a>
+                                <a href="https://t.me/devaisuBl1zer/31" target="_blank" class="desk-device-item">
+                                    <div class="desk-device-left">
+                                        <img src="EPOMAKER_HE60.png" class="desk-device-img" alt="EPOMAKER HE60">
+                                        <span class="desk-device-name">EPOMAKER HE60</span>
+                                    </div>
+                                </a>
+                                <a href="https://t.me/devaisuBl1zer/7" target="_blank" class="desk-device-item">
+                                    <div class="desk-device-left">
+                                        <img src="EPOMAKERQK108.png?v=3" class="desk-device-img" alt="EPOMAKER QK108">
+                                        <span class="desk-device-name">EPOMAKER QK108</span>
+                                    </div>
+                                </a>
+                                <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="desk-device-item">
+                                    <div class="desk-device-left">
+                                        <img src="EPOKAKA%20galaxy%2070.png?v=3" class="desk-device-img" alt="EPOMAKER GALAXY 70">
+                                        <span class="desk-device-name">EPOMAKER GALAXY 70</span>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                        <a href="https://t.me/devaisuBl1zer/7" target="_blank" class="desk-device-item">
-                            <div class="desk-device-left">
-                                <img src="EPOMAKERQK108.png?v=3" class="desk-device-img" alt="EPOMAKER QK108">
-                                <span class="desk-device-name">EPOMAKER QK108</span>
-                            </div>
-                        </a>
-                        <a href="https://t.me/devaisuBl1zer/3" target="_blank" class="desk-device-item">
-                            <div class="desk-device-left">
-                                <img src="EPOKAKA%20galaxy%2070.png?v=3" class="desk-device-img" alt="EPOMAKER GALAXY 70">
-                                <span class="desk-device-name">EPOMAKER GALAXY 70</span>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                    </details>
 
                     <!-- 3. МЫШКИ -->
-                    <div class="desk-sub-category-title" style="margin-top: 16px;">🖱️ Мышки</div>
-                    <div class="desk-device-grid">
-                        <a href="https://t.me/devaisuBl1zer/12" target="_blank" class="desk-device-item">
+                    <details class="desk-sub-accordion">
+                        <summary class="desk-sub-summary">
                             <div class="desk-device-left">
-                                <img src="EpomakerCarbonX.png?v=3" class="desk-device-img" alt="EPOMAKER CARBON X">
-                                <span class="desk-device-name">EPOMAKER CARBON X</span>
+                                <img src="EpomakerCarbonX.png?v=3" class="desk-device-img" alt="Мышки">
+                                <span class="desk-device-name">Мышки</span>
                             </div>
-                        </a>
-                    </div>
+                        </summary>
+                        <div class="desk-sub-content">
+                            <div class="desk-device-grid">
+                                <a href="https://t.me/devaisuBl1zer/12" target="_blank" class="desk-device-item">
+                                    <div class="desk-device-left">
+                                        <img src="EpomakerCarbonX.png?v=3" class="desk-device-img" alt="EPOMAKER CARBON X">
+                                        <span class="desk-device-name">EPOMAKER CARBON X</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </details>
 
                 </div>
             </details>
