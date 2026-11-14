@@ -20,7 +20,6 @@
         }
 
         body {
-            background-image: url('FONupdate.jpg?v=24');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -29,6 +28,20 @@
             justify-content: center;
             align-items: center;
             padding: 16px;
+        }
+
+        /* За замовчуванням (мобільна версія) — використовуємо вертикальне зображення FAN.jpg (9:16) */
+        body {
+            background-image: url('FAN.jpg?v=1');
+        }
+
+        /* На комп'ютері розвертаємо/адаптуємо фон на 16:9 через трансформацію або властивості відображення */
+        @media (min-width: 769px) {
+            body {
+                /* Поворот на 90 градусів та розтягування під горизонтальний формат 16:9 */
+                background-image: url('FAN.jpg?v=1');
+                background-size: 100% 100%; /* або cover, якщо треба заповнити без спотворень */
+            }
         }
 
         .mobile-version, .desktop-version {
@@ -476,7 +489,7 @@
     <!-- МОБІЛЬНА ВЕРСІЯ -->
     <div class="mobile-version">
         <div class="profile">
-            <img src="ava.jpeg" alt="BL1ZER.TECH" class="avatar">
+            <img src="ava-update.jpg" alt="BL1ZER.TECH" class="avatar">
             <h1 class="username">BL1ZER.TECH</h1>
         </div>
 
@@ -484,7 +497,7 @@
             <summary>ДЕВАЙСЫ С ВИДЕО</summary>
             <div class="content">
                 <div class="device-list">
-                    <!-- EPOMAKER HE60 LITE (посилання /39, файл EPOMAKERHE60LITE.png) -->
+                    <!-- EPOMAKER HE60 LITE -->
                     <a href="https://t.me/devaisuBl1zer/39" target="_blank" class="device-item">
                         <div class="device-left">
                             <img src="EPOMAKERHE60LITE.png" class="device-img" alt="EPOMAKER HE60 LITE">
@@ -590,7 +603,7 @@
     <!-- ДЕСКТОПНА ВЕРСІЯ (ПК) -->
     <div class="desktop-version">
         <div class="desk-left">
-            <img src="ava.jpeg" alt="BL1ZER.TECH" class="desk-avatar">
+            <img src="ava-update.jpg" alt="BL1ZER.TECH" class="desk-avatar">
             <h1 class="desk-username">BL1ZER.TECH</h1>
             
             <div class="desk-socials">
@@ -614,7 +627,7 @@
                 <summary class="desk-summary">ДЕВАЙСЫ С ВИДЕО</summary>
                 <div class="desk-content">
                     <div class="desk-device-grid">
-                        <!-- EPOMAKER HE60 LITE (лівий верхній куток) -->
+                        <!-- EPOMAKER HE60 LITE -->
                         <a href="https://t.me/devaisuBl1zer/39" target="_blank" class="desk-device-item">
                             <div class="desk-device-left">
                                 <img src="EPOMAKERHE60LITE.png" class="desk-device-img" alt="EPOMAKER HE60 LITE">
